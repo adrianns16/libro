@@ -64,7 +64,9 @@
         }
 
         .master-book img {
-            width: 95%; height: auto; z-index: 2; margin-bottom: 25px;
+            width: 100%; height: 80%; /* Ajuste para que ocupe buen espacio */
+            object-fit: contain; /* Para que la lata no se corte */
+            z-index: 2; margin-bottom: 10px;
             filter: grayscale(0.3) contrast(1.4) drop-shadow(0 20px 30px rgba(0,0,0,0.9));
             transform: rotate(-2deg); transition: 0.5s;
         }
@@ -87,7 +89,8 @@
         .book-item { display: flex; flex-direction: column; align-items: center; cursor: pointer; }
         
         .chapter-book {
-            width: 200px; height: 320px; background: #222; position: relative;
+            width: 200px; height: 320px; background: #c0c0c0; /* Fondo claro para que el multiply funcione */
+            position: relative;
             transition: 0.4s; box-shadow: 20px 20px 50px black;
             border-left: 12px solid #000;
             clip-path: polygon(0% 0%, 95% 5%, 100% 20%, 98% 50%, 100% 80%, 95% 100%, 0% 100%);
@@ -95,18 +98,29 @@
             overflow: hidden;
         }
 
+        /* --- AQUÍ ESTÁ LA MAGIA DE LA ADAPTACIÓN DE IMÁGENES --- */
         .chapter-book img {
-            width: 100%; height: 100%; object-fit: cover; opacity: 0.5;
-            mix-blend-mode: luminosity; transition: 0.5s;
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; /* Recorta la imagen para llenar el libro sin deformar */
+            opacity: 0.8;
+            mix-blend-mode: multiply; /* Se fusiona con el fondo como tinta */
+            filter: grayscale(1) contrast(1.5); /* Estilo tétrico inicial */
+            transition: 0.5s;
         }
         
-        .chapter-book:hover img { opacity: 1; mix-blend-mode: normal; }
+        .chapter-book:hover img { 
+            opacity: 1; 
+            mix-blend-mode: normal; /* Al pasar el mouse se ve real */
+            filter: none; 
+        }
+
         .chapter-book:hover { transform: translateY(-30px) rotate(2deg); box-shadow: 0 50px 80px rgba(0,0,0,0.8); }
         
         .book-title-overlay {
             position: absolute; bottom: 0; width: 100%; text-align: center;
             font-size: 1.8rem; color: #ddd; background: linear-gradient(to top, #000, transparent); 
-            padding: 20px 0 10px; z-index: 5;
+            padding: 30px 0 10px; z-index: 5; pointer-events: none;
         }
 
         /* --- LECTOR DE HISTORIAS (MODAL) --- */
@@ -199,7 +213,7 @@
 
         <div class="main-book-section">
             <div class="master-book" onclick="openStory(0)">
-                <img src="img/monstruo.png" alt="Lata Monstruosa">
+                <img src="Gemini_Generated_Image_rvlbqkrvlbqkrvlb.png" alt="Lata Monstruosa">
                 <h2>El Origen del Silencio</h2>
             </div>
             <p style="margin-top:20px; font-size:1.5rem; color:#555; letter-spacing: 2px;">( NO ABRIR )</p>
@@ -209,28 +223,28 @@
             
             <div class="book-item" onclick="openStory(1)">
                 <div class="chapter-book">
-                    <img src="img/gato.png" alt="Cap 1"> 
+                    <img src="image_9bae3d.png" alt="Cap 1"> 
                     <div class="book-title-overlay">I: Hambre</div>
                 </div>
             </div>
 
             <div class="book-item" onclick="openStory(2)">
                 <div class="chapter-book">
-                    <img src="img/cristal.png" alt="Cap 2">
+                    <img src="image_ce5dd9.png" alt="Cap 2">
                     <div class="book-title-overlay">II: Cristal</div>
                 </div>
             </div>
 
             <div class="book-item" onclick="openStory(3)">
                 <div class="chapter-book">
-                    <img src="img/corazon.png" alt="Cap 3">
+                    <img src="image_ce713a.png" alt="Cap 3">
                     <div class="book-title-overlay">III: Sangre</div>
                 </div>
             </div>
 
             <div class="book-item" onclick="openStory(4)">
                 <div class="chapter-book">
-                    <img src="img/aire.png" alt="Cap 4">
+                    <img src="image_9bb4ec.png" alt="Cap 4">
                     <div class="book-title-overlay">IV: Aire</div>
                 </div>
             </div>
@@ -246,7 +260,7 @@
 
     <script>
         // =====================================================================
-        // HISTORIAS EXTENDIDAS (Aquí está todo el texto trágico y largo)
+        // HISTORIAS EXTENDIDAS (Narrativa profunda y sensorial)
         // =====================================================================
         const stories = [
             // --- HISTORIA 0: PRINCIPAL ---
@@ -257,18 +271,17 @@
                     <img src="TU_DIBUJO_LATERAL_2.png" class="my-drawing pos-2">
 
                     <div class="story-text">
-                        <p>Dicen que las casas tienen alma, pero la mía tiene dientes. El silencio aquí no es tranquilo; es un animal depredador que respira detrás de las paredes, esperando que cometa el error de ser un niño. Aprendí a leer las sombras antes que las letras del abecedario. Si la sombra de papá en el pasillo es larga y tambaleante, debo convertirme en una mota de polvo debajo del sofá. Si mamá apaga las luces de la cocina antes de las ocho, debo ser una estatua de mármol que no necesita agua ni comida.</p>
+                        <p>He llegado a la conclusión de que esta casa no está construida con ladrillos, sino con dientes. El silencio aquí no es tranquilo; es un animal depredador que respira detrás de las paredes, esperando que cometa el error de ser un niño. Aprendí a leer las sombras antes que las letras del abecedario. Si la sombra de papá en el pasillo es larga, deforme y tambaleante, sé que debo convertirme en una mota de polvo debajo del sofá, una que no respira, una que no ocupa espacio. Si mamá apaga las luces de la cocina antes de las ocho y se sienta a oscuras, sé que debo ser una estatua de mármol frío que no necesita agua, ni comida, ni amor.</p>
                         
                         <div class="sketch-inline">
                             <svg viewBox="0 0 100 100" style="filter:url(#rough)"><path d="M10,90 L10,30 L50,10 L90,30 L90,90 Z" stroke="#555"/><path d="M30,90 L30,60 L70,60 L70,90"/><path d="M20,40 L40,40 M60,40 L80,40"/><circle cx="50" cy="30" r="3" fill="#333"/></svg>
                         </div>
 
-                        <p>El silencio pesa toneladas. Se siente en la lengua como si hubiera tragado monedas oxidadas que saben a sangre vieja. A veces, para comprobar que sigo existiendo en este mundo gris, muerdo el interior de mi mejilla hasta que siento el dolor agudo. Ese dolor es mi único amigo, el único que me dice: "Sigues aquí, no te has borrado todavía".</p> 
+                        <p>El silencio pesa toneladas sobre mis hombros. Se siente en la lengua como si hubiera tragado monedas oxidadas que saben a sangre vieja y a miedo. A veces, cuando el silencio es tan fuerte que zumba en mis oídos, muerdo el interior de mi mejilla hasta que siento el dolor agudo y caliente. Ese dolor es mi único amigo, el único que me dice: "Sigues aquí, no te has borrado todavía, tu sangre sigue corriendo aunque nadie la quiera".</p>
                         
-                        <span class="whisper">"Los niños buenos no hacen ruido. Los niños buenos no ocupan espacio. Los niños buenos no existen hasta que se les llama."</span>
+                        <span class="whisper">"Los niños buenos no hacen ruido. Los niños buenos no ocupan espacio. Los niños buenos no existen hasta que se les llama para ser castigados."</span>
 
-                        <p>Mi voz es un cristal roto: sé que si la uso, alguien terminará sangrando, y siempre soy yo. Por eso la guardé en una caja imaginaria, debajo de los gritos que nunca me atreví a soltar. La casa me mira con sus ventanas vacías como cuencas de ojos muertos, esperando, siempre esperando a que el <span class="trauma">Monstruo de los Pasos Pesados</span> suba la escalera.</p>
-                        <p>Hoy conté las grietas del techo otra vez. Hay cuarenta y tres. Si las uno con la mente, forman la cara de alguien que llora. Creo que soy yo.</p>
+                        <p>Mi voz se ha convertido en un cristal roto atorado en mi garganta: sé que si la uso, sé que si hablo, alguien terminará sangrando, y siempre soy yo. Por eso la guardé en una caja imaginaria, muy profunda en mi estómago, debajo de los gritos que nunca me atreví a soltar. La casa me mira con sus ventanas vacías como cuencas de ojos muertos, esperando, siempre esperando a que el <span class="trauma">Monstruo de los Pasos Pesados</span> suba la escalera y abra la puerta de mi cuarto. Cuando eso pasa, yo dejo de ser yo. Me voy a otro lugar.</p>
                     </div>
                 `
             },
@@ -280,16 +293,15 @@
                     <img src="TU_DIBUJO_GATO.png" class="my-drawing pos-3">
                     
                     <div class="story-text">
-                        <p>Hay un gato negro viviendo en mi caja torácica. No es un gato suave. No tiene pelo, solo huesos afilados, alambres oxidados y un maullido que suena como un crujido de ramas secas. Se despierta cuando la nevera empieza a zumbar más fuerte porque está vacía, cantando la canción del frío.</p>
+                        <p>Hay un gato negro viviendo en mi caja torácica, justo entre mis pulmones. No es un gato suave de los que salen en los cuentos. No tiene pelo, solo huesos afilados, alambres oxidados y un maullido que suena como un crujido de ramas secas rompiéndose. Se despierta por las noches, cuando la nevera empieza a zumbar más fuerte porque está vacía, cantando la canción del frío y la soledad.</p>
                         
                         <div class="sketch-inline">
                              <svg viewBox="0 0 100 100" style="filter:url(#rough)"><path d="M20,60 Q50,30 80,60" fill="none" stroke="#ccc"/><circle cx="30" cy="50" r="5" fill="none"/><path d="M25,60 L25,80 M75,60 L75,80"/><path d="M30,50 L10,40 M30,50 L10,50 M30,50 L10,60" opacity="0.5"/></svg>
                         </div>
 
-                        <p>Mamá dice que no tiene hambre, que ella se alimenta del aire y de sus "medicinas amargas" que vienen en botellas verdes y huelen a hospital sucio. Yo también quiero medicinas para que el gato se duerma, pero solo me dan agua del grifo que sabe a metal. Ayer, la desesperación tenía sabor: intenté comer un poco de papel de cuaderno. Lo mastiqué despacio, imaginando que era pan caliente, pero sabía a tinta y a mentiras.</p>
+                        <p>Mamá dice que no tiene hambre, que ella se alimenta del aire y de sus "medicinas amargas" que vienen en botellas verdes y huelen a hospital sucio y a tristeza líquida. Yo también quiero medicinas para que el gato se duerma y deje de arañarme por dentro, pero solo me dan agua del grifo que sabe a tubería vieja. Ayer, la desesperación tenía sabor: intenté comer un poco de papel de cuaderno. Lo mastiqué despacio, muy despacio, imaginando que era pan caliente recién horneado, pero sabía a tinta, a celulosa y a mentiras.</p>
                         
-                        <p>El gato se enojó. Me arañó el estómago desde adentro, clavando sus garras en mis entrañas vacías. Me doblé del dolor en la alfombra, pero no grité. Cuando papá llega, el gato se esconde y se queda muy quieto, porque sabe que papá no tolera a los animales que piden demasiado. <span class="trauma">El hambre no es un vacío, el hambre son dientes que te comen desde adentro hacia afuera.</span></p>
-                        <p>Soñé que me comía una manzana roja. Era tan real que desperté masticando mi almohada. La almohada estaba mojada de lágrimas, no de jugo.</p>
+                        <p>El gato se enojó por el engaño. Me arañó el estómago desde adentro, clavando sus garras en mis entrañas vacías. Me doblé del dolor en la alfombra sucia, pero no grité. No puedo gritar. Cuando papá llega, el gato se esconde y se queda muy quieto, tan quieto como yo, porque sabe que papá no tolera a los animales que piden demasiado, ni a los niños que necesitan cosas. <span class="trauma">El hambre no es un vacío, el hambre son dientes que te comen desde adentro hacia afuera hasta que solo queda la cáscara.</span></p>
                     </div>
                 `
             },
@@ -301,17 +313,17 @@
                     <img src="TU_DIBUJO_ESCUELA.png" class="my-drawing pos-4">
 
                     <div class="story-text">
-                        <p>En la escuela, el suelo está hecho de cristal fino, a punto de romperse. Todos los demás niños caminan con botas pesadas, corren y saltan, y el suelo los sostiene. Pero yo camino descalzo, pisando de puntillas, y escucho los crujidos debajo de mis pies. Sé que en cualquier momento el suelo cederá y caeré al abismo negro que hay debajo.</p>
+                        <p>En la escuela, el mundo es diferente, pero no es seguro. El suelo allí está hecho de cristal fino, a punto de romperse en mil pedazos. Todos los demás niños caminan con botas pesadas, corren, saltan y juegan a la pelota, y el suelo los sostiene con fuerza. Pero yo camino descalzo, pisando de puntillas, conteniendo la respiración, y escucho los crujidos amenazantes debajo de mis pies. Sé que en cualquier momento el suelo cederá y caeré al abismo negro que hay debajo, donde todos verán lo roto que estoy.</p>
                         
                         <div class="sketch-inline">
                              <svg viewBox="0 0 100 100" style="filter:url(#rough)"><rect x="30" y="40" width="40" height="40" fill="none" stroke="#ccc"/><line x1="30" y1="40" x2="70" y2="80" stroke="#555"/><circle cx="50" cy="60" r="10" stroke-dasharray="2,2"/></svg>
                         </div>
 
-                        <p>La maestra tiene ojos de brasa; me mira y parece que quiere apagarme o descubrir mi secreto. Los otros niños huelen a suavizante de ropa, a meriendas de chocolate y a abrazos de despedida en la puerta. Yo huelo a humedad, a ropa secada en un sótano sin sol y a la <span class="bruise-text">colonia barata de papá</span> que se queda pegada a mi piel cuando me agarra del cuello para decirme que soy un inútil.</p>
+                        <p>La maestra tiene ojos de brasa; cuando me mira, siento que quiere quemarme o descubrir mi secreto sucio. Los otros niños huelen a suavizante de ropa con olor a lavanda, a meriendas de chocolate y a abrazos de despedida en la puerta de la escuela. Yo huelo a humedad, a ropa secada en un sótano sin sol y a la <span class="bruise-text">colonia barata y agria de papá</span> que se queda pegada a mi piel como una mancha de aceite cuando me agarra del cuello para decirme que soy un inútil antes de salir de casa.</p>
                         
                         <span class="whisper">"¿Qué hiciste el fin de semana?", me preguntó un niño con sonrisa de sol.</span>
 
-                        <p>Mentí. Tuve que mentir. Dije: "Fuimos al parque y comimos helado de nube". No pude decirles la verdad: que pasé el sábado encerrado en el baño, contando las baldosas y tapándome los oídos porque afuera había una tormenta de gritos y platos rotos. Mi pupitre es mi isla desierta. Si me quedo muy quieto y no respiro, quizás me convierta en madera y nadie me preguntará por qué siempre tengo sueño, ni por qué tengo marcas moradas que parecen mapas de dolor en los brazos.</p>
+                        <p>Mentí. Tuve que mentir porque la verdad es un monstruo. Dije: "Fuimos al parque y comimos helado de nube". No pude decirles la verdad: que pasé el sábado encerrado en el baño, contando las baldosas del suelo (hay ciento veinte) y tapándome los oídos con fuerza porque afuera había una tormenta de gritos y platos rotos volando contra las paredes. Mi pupitre es mi isla desierta en medio de un mar de tiburones. Si me quedo muy quieto y no respiro, quizás me convierta en madera y nadie me preguntará por qué siempre tengo sueño, ni por qué tengo marcas moradas que parecen mapas de dolor dibujados en mis brazos.</p>
                     </div>
                 `
             },
@@ -323,15 +335,15 @@
                     <img src="TU_DIBUJO_CORAZON.png" class="my-drawing pos-1">
 
                     <div class="story-text">
-                        <p>Fue el día de las madres, o quizás solo un martes cualquiera donde la culpa me pesaba demasiado. Decidí hacer un corazón de cartón. Me tomó tres días porque las tijeras de la cocina estaban desafiladas y mis dedos temblaban de miedo. Quería que fuera un puente. Un puente sagrado para que mamá cruzara desde su mundo de niebla y botellas hacia mi rincón olvidado.</p>
+                        <p>Fue el día de las madres, o quizás solo un martes cualquiera donde la culpa de existir me pesaba demasiado en los hombros. Decidí hacer un corazón de cartón. Me tomó tres días porque las tijeras de la cocina estaban desafiladas y mis dedos temblaban de miedo a ser descubierto. Quería que fuera un puente. Un puente sagrado para que mamá cruzara desde su mundo de niebla, humo y botellas hacia mi rincón olvidado.</p>
                         
                         <div class="sketch-inline">
                             <svg viewBox="0 0 100 100" style="filter:url(#rough)"><path d="M50,80 C20,50 20,20 50,40 C80,20 80,50 50,80" fill="none" stroke="#888"/><path d="M40,40 L60,60 M40,60 L60,40" stroke="#7a0000" stroke-width="2"/></svg>
                         </div>
 
-                        <p>Como no tenía pintura roja, ni marcadores, hice lo único que tenía sentido en mi cabeza rota: me rasqué la costra de la rodilla hasta que volvió a sangrar. Usé mi propia sangre para pintar el cartón. Pensé: "Ahora es un corazón de verdad, porque tiene una parte viva de mí. Ahora entenderá cuánto la quiero".</p>
-                        <p>Cuando se lo di, sus manos temblaban. Olían a cigarro rancio y a olvido. Ni siquiera leyó lo que escribí. Lo miró con asco, lo estrujó como si fuera una servilleta llena de mocos y me gritó que le había manchado la mesa.</p>
-                        <p>El corazón terminó en el cubo de la basura, mezclado con cáscaras de huevo y ceniza. Me quedé mirando el cubo durante horas. <span class="trauma">Ese día aprendí que mi amor no es un regalo. Mi amor es una mancha sucia que hay que limpiar con lejía.</span></p>
+                        <p>Como no tenía pintura roja, ni marcadores, ni colores bonitos, hice lo único que tenía sentido en mi cabeza rota: me rasqué la costra de la rodilla hasta que volvió a sangrar, caliente y espesa. Usé mi propia sangre para pintar el cartón gris. Pensé: "Ahora es un corazón de verdad, porque tiene una parte viva de mí. Ahora entenderá cuánto la quiero, ahora verá que soy real".</p>
+                        <p>Cuando se lo di, sus manos temblaban. Olían a cigarro rancio y a olvido. Ni siquiera leyó lo que escribí con mi letra torcida. Lo miró con asco, lo estrujó como si fuera una servilleta llena de mocos y me gritó que le había manchado la mesa limpia. El corazón terminó en el cubo de la basura, mezclado con cáscaras de huevo y ceniza de cigarro.</p> 
+                        <p>Me quedé mirando el cubo durante horas, viendo cómo mi sangre se secaba sobre la basura. <span class="trauma">Ese día aprendí que mi amor no es un regalo. Mi amor es una mancha sucia que hay que limpiar con lejía.</span></p>
                     </div>
                 `
             },
@@ -343,15 +355,15 @@
                     <img src="TU_DIBUJO_AIRE.png" class="my-drawing pos-2">
 
                     <div class="story-text">
-                        <p>He descubierto el truco definitivo. Es un juego secreto que juego cuando el cinturón de papá silba en el aire como una serpiente furiosa. El juego se llama "Desaparecer".</p>
-                        <p>Primero, dejo de sentir los dedos de los pies. Luego, apago las rodillas. Imagino que mi piel se vuelve transparente, como el vidrio, luego como el agua, y finalmente como el vapor. Cuando el primer golpe llega, ya no estoy ahí. He salido de mi cuerpo.</p>
+                        <p>He descubierto el truco definitivo, la magia suprema. Es un juego secreto que juego cuando el cinturón de papá silba en el aire como una serpiente furiosa buscando morder. El juego se llama "Desaparecer".</p>
+                        <p>Primero, dejo de sentir los dedos de los pies, como si se congelaran. Luego, apago las rodillas. Imagino que mi piel se vuelve transparente, como el vidrio, luego líquida como el agua, y finalmente invisible como el vapor. Cuando el primer golpe llega a mi piel, yo ya no estoy ahí. He salido de mi cuerpo.</p>
                         
                         <div class="sketch-inline">
                             <svg viewBox="0 0 100 100" style="filter:url(#rough)"><circle cx="50" cy="60" r="20" stroke="#555" fill="none"/><circle cx="50" cy="40" r="20" stroke="#ccc" stroke-dasharray="2,4"/><path d="M50,60 L50,40" stroke="#333" stroke-dasharray="2,2"/></svg>
                         </div>
 
-                        <p>Me elevo flotando hacia el techo, justo al lado de la mancha de humedad y la telaraña vieja. Desde allí arriba, miro hacia abajo. Veo a un niño pequeño y patético en el suelo, llorando y protegiéndose la cabeza. "Pobre niño", pienso, "me da lástima, pero ese no soy yo". Yo soy aire. Yo soy nada.</p>
-                        <p>Soy una mota de polvo bailando en un rayo de luz. Soy el silencio entre dos gritos. El aire no tiene huesos que romper. El aire no tiene piel que marcar. Si me esfuerzo lo suficiente y aguanto la respiración hasta que mis pulmones ardan, quizás algún día no tenga que bajar nunca más.</p>
+                        <p>Me elevo flotando hacia el techo, justo al lado de la mancha de humedad y la telaraña vieja que nadie limpia. Desde allí arriba, miro hacia abajo. Veo a un niño pequeño, sucio y patético en el suelo, llorando y protegiéndose la cabeza con los brazos. "Pobre niño", pienso, "me da lástima, pero ese no soy yo. Yo soy el aire". Yo soy nada.</p>
+                        <p>Soy una mota de polvo bailando en un rayo de luz que entra por la persiana. Soy el silencio entre dos gritos. El aire no tiene huesos que romper. El aire no tiene piel que marcar con moretones. Si me esfuerzo lo suficiente y aguanto la respiración hasta que mis pulmones ardan como fuego, quizás algún día no tenga que bajar nunca más a ese cuerpo que duele.</p>
                         <p><span class="trauma">Ser nada es la única forma segura de ser libre.</span> Nadie puede herir a lo que no existe.</p>
                     </div>
                 `
@@ -383,4 +395,3 @@
     </script>
 </body>
 </html>
-
